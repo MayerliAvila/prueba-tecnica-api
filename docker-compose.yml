@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  prueba_tecnica_db:
+    image: mysql:8.0.33
+    container_name: prueba_tecnica_db
+    ports:
+      - "${DB_PORT}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 10
+
+  tecnicaapi:
+    build: ./tecnicaapi
+    container_name: tecnicaapi
+    ports:
+      - "${APP_PORT}:8080"
+    depends_on:
+      prueba_tecnica_db:
+        condition: service_healthy
+    environment:
+      DB_URI: jdbc:mysql://prueba_tecnica_db:3306/${DB_NAME}?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER: root
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DRIVER: com.mysql.cj.jdbc.Driver
+    restart: always
