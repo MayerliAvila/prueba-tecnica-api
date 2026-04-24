@@ -2,7 +2,7 @@
 
 git clone https://github.com/MayerliAvila/prueba-tecnica-api.git
 
-cd tecnicaapi
+Terminal:
 
 docker compose build
 
