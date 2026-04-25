@@ -15,5 +15,6 @@ public class NotaDTO {
     private LocalDate fecha_registro;
     private Long idAlumno;
     private Long idMateria;
+    private String materiaNombre;
 
 }

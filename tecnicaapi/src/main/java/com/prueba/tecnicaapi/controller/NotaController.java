@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/notas")
 public class NotaController {
@@ -20,8 +20,8 @@ public class NotaController {
     public ResponseEntity<NotaDTO> registrarNota(@RequestBody NotaDTO notaDTO) {
         NotaDTO creada = notaService.registrarNota(notaDTO);
         return ResponseEntity.ok(creada);
-    }
 
+    }
     // Listar notas por alumno
     @GetMapping("/alumno/{idAlumno}")
     public ResponseEntity<List<NotaDTO>> obtenerNotasPorAlumno(@PathVariable Long idAlumno) {

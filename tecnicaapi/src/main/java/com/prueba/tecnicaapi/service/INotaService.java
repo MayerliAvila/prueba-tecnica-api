@@ -8,4 +8,5 @@ public interface INotaService {
     NotaDTO registrarNota(NotaDTO notaDTO);
     List<NotaDTO> obtenerNotasPorAlumno(Long idAlumno);
     List<NotaDTO> obtenerNotasPorAlumnoYMateria(Long idAlumno, Long idMateria);
+
 }

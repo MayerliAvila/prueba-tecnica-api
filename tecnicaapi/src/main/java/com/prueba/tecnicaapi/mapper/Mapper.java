@@ -35,15 +35,19 @@ public class Mapper {
     }
 
     //Mapper de Nota a NotaDTO
-    public static NotaDTO toDTO(Nota n){
-        if (n == null) return null;
+    public static NotaDTO toDTO(Nota n) {
+        NotaDTO dto = new NotaDTO();
 
-        return NotaDTO.builder()
-                .id(n.getId())
-                .valor(n.getValor())
-                .fecha_registro(n.getFecha_registro())
-                .idAlumno(n.getAlumno().getId())
-                .idMateria(n.getMateria().getId())
-                .build();
+        dto.setId(n.getId());
+        dto.setValor(n.getValor());
+        dto.setFecha_registro(n.getFecha_registro());
+
+        dto.setIdAlumno(n.getAlumno().getId());
+        dto.setIdMateria(n.getMateria().getId());
+
+        // 🔥 ESTA LÍNEA ES LA CLAVE
+        dto.setMateriaNombre(n.getMateria().getNombre());
+
+        return dto;
     }
 }

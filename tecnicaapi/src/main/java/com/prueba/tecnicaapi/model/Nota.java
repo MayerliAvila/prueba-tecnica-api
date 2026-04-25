@@ -22,5 +22,6 @@ public class Nota {
     //Materia
     @ManyToOne
     private Materia materia;
+    private String materiaNombre;
 
 }
